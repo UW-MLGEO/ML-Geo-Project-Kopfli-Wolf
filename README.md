@@ -1,9 +1,10 @@
-##Scientific Motivation
+# Forecast and discover seismic velocity time series (dv/v) in California by using Machine Learning
+## Scientific Motivation
 
-###Location California
+### Location California
 California is a state of extremes in terms of weather conditions, water use, and tectonic features (Clements and Denolle, 2022 (preprint, and references therein). There are extreme dry periods without any precipitation that last several months to years. This leads to a drop in the water table. In addition, water is pumped from the groundwater reservoir to irrigate fields and supply households. This intensive water harvesting causes the groundwater level to drop further. A sinking groundwater level causes the pore pressure to dropx. At least, the state is also affected by 'El Nino' and 'La Nina' effects from the pacific ocean. These effects lead to irregular low or high precipitation. Besides the strongly fluctuating groundwater level, earthquakes also change the structure of the subsurface. These changes cause small changes in seismic velocity (dv/v).
 
-###Seismic Velocity Changes (dv/v)
+### Seismic Velocity Changes (dv/v)
 For our project, we use ambient noise single-station cross-correlations (SSCC). This means that the individual components of a seismic station are correlated with each other (Feng and Huang, 2021, Hobiger et al, 2014, Viens et al, 2018). For noise correlations, you assume a homogeneous noise field. This means the nois sources have to be homogeneous, distributed, spatial and temporal. But Hillers and Ben-Zion (2011) found noise source correlations with temperature and wind direction (and topography) and wind speed. In this study, they used higher frequencies up to 8 Hz.  Feng and Huang (2021) used 0.1 to 0.9 Hz and could not find an ambient noise field and wind connection. This can be because of the lower frequency range. We use the frequencies up to 4 Hz and assume first an homogeneous noise source distribution. If there is time left, we will check if the California dv/v data show a wind dependency. Under the homogeneous noise source distribution assumption, we can correlate the time series component wise. If you compare long time series you are able to detect small changes or weak trends. This may reflect changes in the subsurface mechanical properties. SSCC has a smaller sensitivity foot print because all-time series leading the correlation are from the same place (same station). The results are therefore very local. Different depths can be investigated with different frequencies, the deeper the frequency, the deeper into the subsurface one can see. We will use the frequency band up to 4 Hz and thus see about 500 m deep (Clements and Denolle (2018) 0.05 to 4 Hz) and Clements and Denolle (2022, preprint) (2 to 4 Hz). This is sufficient to see the groundwater level variations. More details about the method can be found in the review article from Wang and Yao (2020).
 
 ### Project
@@ -19,16 +20,16 @@ In the following figures, we see the weather data (temperature and precipitation
 ## Data Preparatien
 The first idea was to build one xarray (geo- and time-referenced) with all data (seismic and weather). The problem there could be that specific dv/v data time series are only one year long whereas the weather data are more than 30 years long. All time series must have the same length, which means that the dv/v time series is mostly filled with NaN. This increases the file size. We also observe a slight shift to the left of the seismic stations compared to the weather map.
 
-###Scientific Workflow
+### Scientific Workflow
 Develop and describe a scientific workflow using diagrams. Include steps such as data access, and data processing. Describe the GitHub project with the file structure.
 
-####Download Data:
+#### Download Data:
 - California dv/v data → DONE
 - California precipitation data → DONE
 - California temperature data → DONE
 - Earthquake catalog
 
-####Data pre-processing for GPR:
+#### Data pre-processing for GPR:
 - Create x-array for each data set → DONE
 - Check georeferences of data set → DONE
 - Merge datasets if meaningful (memory capacity increases due to NaN)
@@ -36,7 +37,7 @@ Develop and describe a scientific workflow using diagrams. Include steps such as
 - Create continuous time serie (add NaN)
 
 
-####Test Model Parameter:
+#### Test Model Parameter:
 Discovery:
 - Choose ML model: (GPR)
 - Split data into test and training data set
@@ -60,7 +61,7 @@ Forecast:
 
 
 
-####Modeling:
+#### Modeling:
 
 Discovery:
 - Run trained model with chosen model parameter
@@ -71,22 +72,22 @@ Forecast:
 
 
 
-####Interpret Model Output:
+#### Interpret Model Output:
 What do we see?
 What did we expect?
 What is unexpected?
 What can we learn?
 What can we do to improve the model output?
 
-##Machine Learning Model
-###Gaussian Process Regressor (GPR):
+## Machine Learning Model
+### Gaussian Process Regressor (GPR):
 The Gaussian Process Regressor (GPR) tries to fit functions through observation points. By doing this, the GPR can use several input parameters to predict an output parameter as a function of the input parameters. GPR does not need any prior knowledge and it gives an error for each prediction. As it is clearly visible in the figure from Wang (2020), the GPR is a non-linear regression model. This means, GPR tries to fit a non-linear function through the observation points. 
 
 Functionality of Gaussian Process Regressor: The blue dashed line represents the ‘True Function’. On this line, 10 observation points were picked (black cross). The GPR fits 20 functions (thin colored line) through the observation points. The mean of these fitted functions is shown as the red fat line. (Wang, 2020)
 
 
-##Results & Discussion
-###Gaussian Process Regressor (GPR):
+## Results & Discussion
+### Gaussian Process Regressor (GPR):
 The figures below show the result of the GPR, trained with only 30% of the data. It is clearly visible that the algorithm finds a function through the actual scatter cloud, but it does only represent a sparse part of the data. The scattered real or true data can’t be represented as a function.
 
 Compare training, test and predicted dv/v: The GPR was trained with temperature and precipitation time series at once and the input to predict the dv/v were also both parameters. So the scatter clouds are 3D but on a sheet of paper it is difficult to see all three dimensions at once. (M. Köpfli)
@@ -103,7 +104,7 @@ The prediction of the dv/v (dashed black line) not close to the test data (black
 - I choose a bad station
 - Try another station
 
-##References
+## References
 Clements, T., & Denolle, M. A. (2018). Tracking groundwater levels using the ambient seismic field. Geophysical Research Letters, 45, 6459–6465. https://doi.org/10.1029/2018GL077706
 
 Denolle, Marine, and Tim Clements. "The Seismic Signature of California's Earthquakes, Droughts, and Floods." (2022). EarthArXiv. https://doi.org/10.31223/X5RQ0G (preprint)
