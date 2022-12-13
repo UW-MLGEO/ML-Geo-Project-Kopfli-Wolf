@@ -46,10 +46,8 @@ Discovery:
 - Test different spatial splits
 - I tested 20% to 90% of the data in the training data-set
 - Test different hyper parameters
-- Kernel: 1e-20 to 1e30
--              Best fit: 26
-- Noise: 1e-20 to 1e10
--             Best fit: 0.28
+- Kernel: 1e-20 to 1e30 (Best fit: 26)
+- Noise: 1e-20 to 1e10 (Best fit: 0.28)
 
 Forecast: 
 - Choose ML model: Deep Probabilistic Koopman, aka “time dependent analogue of Cover’s Theorem”, Recurrent Neural Network, LSTM, and GRU
@@ -66,8 +64,7 @@ Forecast:
 Discovery:
 - Run trained model with chosen model parameter
 - Visualize model output
-- Calculate some statistical values to quantify the model performance
-- → still to do
+- Calculate some statistical values to quantify the model performance (still to do)
 Forecast: 
 
 
@@ -90,9 +87,9 @@ Functionality of Gaussian Process Regressor: The blue dashed line represents the
 ### Gaussian Process Regressor (GPR):
 The figures below show the result of the GPR, trained with only 30% of the data. It is clearly visible that the algorithm finds a function through the actual scatter cloud, but it does only represent a sparse part of the data. The scattered real or true data can’t be represented as a function.
 
-Compare training, test and predicted dv/v: The GPR was trained with temperature and precipitation time series at once and the input to predict the dv/v were also both parameters. So the scatter clouds are 3D but on a sheet of paper it is difficult to see all three dimensions at once. (M. Köpfli)
+Compare training, test and predicted dv/v: The GPR was trained with temperature and precipitation time series at once and the input to predict the dv/v were also both parameters. So the scatter clouds are 3D but on a sheet of paper it is difficult to see all three dimensions at once.
 
-Time Series of four and a half year: The colored lines are the input weather parameter (temperature and precipitation), the solid black line are the true dv/v  observations and the black dashed line represents the model prediction. The prediction is to noisy and the peak is not shifted slightly to the right of the temperature peak. (M. Köpfli)
+Time Series of four and a half year: The colored lines are the input weather parameter (temperature and precipitation), the solid black line are the true dv/v  observations and the black dashed line represents the model prediction. The prediction is to noisy and the peak is not shifted slightly to the right of the temperature peak.
 
 The prediction of the dv/v (dashed black line) not close to the test data (black solid line). Instead of showing a smoothed curve with a peak slightli after the temperature peak, the predicted dv/v looks similar to the temperature but in the range of the actual dv/v data. This could be the case because of :
 - Diffusion of precipitation & temperature (Feng et al., 2021)
