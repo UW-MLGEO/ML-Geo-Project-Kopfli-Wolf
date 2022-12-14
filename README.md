@@ -100,6 +100,17 @@ The prediction of the dv/v (dashed black line) not close to the test data (black
 - Other parameters (not precipitation & temperature) have a significant impact on dvv → earthquake (add the eq catalog)
 - I choose a bad station
 - Try another station
+### Forecasting: 
+
+The figures below show the result of the Simple Neural Network (fig 1) and Long Short term Memory (Figures 2 and 3), trained on 70 % of the data. It is very clear that the Simple Neural Network performs better with what we have done thus far. When working with the LSTM, we initially found a model that fit our test data fairly well with the exception of the scaling (note the side-by-side comparison). After rescaling, we see that our chosen normalization hasn’t worked as well as we had hoped. 
+
+Our work shows that the simple recurrent neural network is the best performing thus far. Further improvements can and should be made to the Long Short term Memory model. Future Work:
+- Further exploration to model forecasts with Koopman Operator Theory (Deep Probabilistic Koopman)
+- Improvements and Optimization of LSTM Model
+- Further Exploration of Gated Recurrent Unit Network 
+- A full analysis of best performing model for all four neural networks 
+- Bring in other networks from Calfornia and perform the same tests on those. Create Geospatial forecast amongst networks where statistically achievable. 
+- Inclusion of other factors such as Temperature and Precipitation to Improve Temporal Forecast of entire network
 
 ## References
 Clements, T., & Denolle, M. A. (2018). Tracking groundwater levels using the ambient seismic field. Geophysical Research Letters, 45, 6459–6465. https://doi.org/10.1029/2018GL077706
